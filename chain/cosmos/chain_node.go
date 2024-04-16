@@ -508,7 +508,7 @@ func (tn *ChainNode) ExecTx(ctx context.Context, keyName string, command ...stri
 	tn.lock.Lock()
 	defer tn.lock.Unlock()
 
-	stdout, _, err := tn.Exec(ctx, tn.TxCommand(keyName, command...), nil)
+	stdout, _, err := tn.Exec(ctx, tn.TxCommand(keyName, command...), tn.Chain.Config().Env)
 	if err != nil {
 		return "", err
 	}
